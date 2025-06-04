@@ -69,4 +69,120 @@
   }
   @keyframes fall {
     0% {
-      transfor
+      transform: translateY(-50px) rotate(45deg);
+      opacity: 0.9;
+    }
+    100% {
+      transform: translateY(110vh) rotate(45deg);
+      opacity: 0;
+    }
+  }
+  main {
+    max-width: 960px;
+    margin: 0 auto 50px;
+    padding: 0 10px;
+  }
+  section.gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    gap: 10px;
+  }
+  section.gallery img {
+    width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+    box-shadow: 0 3px 6px rgb(90 10 69 / 0.4);
+    transition: transform 0.3s ease;
+    cursor: pointer;
+  }
+  section.gallery img:hover {
+    transform: scale(1.05);
+  }
+  audio {
+    display: block;
+    margin: 0 auto 40px;
+    outline: none;
+  }
+  @media (max-width: 480px) {
+    h1 { font-size: 2rem; }
+    #loveText { font-size: 1.1rem; }
+    #countdown { font-size: 1rem; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>Feliz Dia Dos Namorados</h1>
+  <div id="loveText">Meu amor, eu te amo muuuuuuuuuuuuuuuuuuuuuuuuuito e você é o namorado perfeito!</div>
+  <div id="countdown">Calculando tempo juntos...</div>
+</header>
+
+<div id="hearts"></div>
+
+<main>
+  <audio controls loop>
+    <source src="https://cdn.pixabay.com/download/audio/2022/03/19/audio_eb22615b26.mp3?filename=romantic-piano-16523.mp3" type="audio/mpeg" />
+    Seu navegador não suporta áudio.
+  </audio>
+
+  <section class="gallery" aria-label="Galeria de fotos do casal">
+    <img src="https://i.postimg.cc/dZcy3P5g/20240520-165323.jpg" alt="Foto 1" />
+    <img src="https://i.postimg.cc/y3hSSQ5x/20240520-173055.jpg" alt="Foto 2" />
+    <img src="https://i.postimg.cc/cvSXjPZ9/20250308232749801.jpg" alt="Foto 3" />
+    <img src="https://i.postimg.cc/G4xq1zmc/20250502200641967.jpg" alt="Foto 4" />
+    <img src="https://i.postimg.cc/62y0nXL3/20250523165527301.jpg" alt="Foto 5" />
+    <img src="https://i.postimg.cc/4K4w4tYp/20250530233944960.jpg" alt="Foto 6" />
+    <img src="https://i.postimg.cc/B8hpj6Fk/20250601160712445.jpg" alt="Foto 7" />
+    <img src="https://i.postimg.cc/YLFzDzPB/DSC06117.jpg" alt="Foto 8" />
+    <img src="https://i.postimg.cc/w7KVyntq/IMG-20240221-WA0008-2.jpg" alt="Foto 9" />
+    <img src="https://i.postimg.cc/68tfzRLF/IMG-20240328-WA0008.jpg" alt="Foto 10" />
+  </section>
+</main>
+
+<script>
+  // Função para atualizar o contador do tempo juntos
+  function atualizarContador() {
+    const inicio = new Date('2025-01-15T00:00:00');
+    const agora = new Date();
+    let diff = agora - inicio;
+
+    const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
+    diff -= dias * (1000 * 60 * 60 * 24);
+
+    const horas = Math.floor(diff / (1000 * 60 * 60));
+    diff -= horas * (1000 * 60 * 60);
+
+    const minutos = Math.floor(diff / (1000 * 60));
+    diff -= minutos * (1000 * 60);
+
+    const segundos = Math.floor(diff / 1000);
+
+    document.getElementById('countdown').textContent =
+      `Estamos juntos há ${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
+  }
+
+  setInterval(atualizarContador, 1000);
+  atualizarContador();
+
+  // Função para criar e animar corações caindo
+  const heartsContainer = document.getElementById('hearts');
+
+  function criarCoracao() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (4 + Math.random() * 4) + 's';
+    heart.style.opacity = Math.random() * 0.5 + 0.7;
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 7000);
+  }
+
+  setInterval(criarCoracao, 300);
+</script>
+
+</body>
+</html>
