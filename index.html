@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feliz Dia dos Namorados!</title>
 
+<!-- Fontes românticas -->
 <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
 
 <style>
@@ -32,67 +33,4 @@
     margin-right: auto;
   }
 
-  #countdown {
-    font-size: 1.4rem;
-    margin-top: 30px;
-    background: #d10063;
-    color: white;
-    display: inline-block;
-    padding: 12px 24px;
-    border-radius: 20px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-  }
-
-  footer {
-    margin-top: 60px;
-    font-size: 0.9rem;
-    color: #555;
-  }
-</style>
-</head>
-
-<body>
-
-<h1>Feliz Dia dos Namorados!</h1>
-
-<div id="loveText">
-  Meu amor, eu te amo muuuuuuuuuuuuuuuuuuuuuuuuuito!<br>
-  Você é o namorado perfeito, a melhor parte da minha vida e meu companheiro para tudo. ❤️
-</div>
-
-<div id="countdown"></div>
-
-<footer>
-  Feito com amor por Ananda 💖
-</footer>
-
-<script>
-// Define a data especial
-const targetDate = new Date("2025-06-12T00:00:00");
-
-// Atualiza a contagem
-function updateCountdown() {
-  const now = new Date();
-  const difference = targetDate - now;
-
-  if (difference <= 0) {
-    document.getElementById("countdown").innerHTML = "Feliz Dia dos Namorados! 💖";
-    clearInterval(interval);
-    return;
-  }
-
-  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((difference / (1000 * 60)) % 60);
-  const seconds = Math.floor((difference / 1000) % 60);
-
-  document.getElementById("countdown").innerHTML =
-    `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💖`;
-}
-
-const interval = setInterval(updateCountdown, 1000);
-updateCountdown();
-</script>
-
-</body>
-</html>
+  #countup {
