@@ -1,34 +1,87 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Feliz Dia dos Namorados!</title>
-  <style>
-    body {
-      font-family: 'Comic Sans MS', 'Cursive', sans-serif;
-      background: #ffe6f0;
-      color: #5a0a45;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Feliz Dia dos Namorados!</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap');
+  body {
+    background: #ffe6f0;
+    color: #b33951;
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    padding: 40px 20px;
+  }
+  h1 {
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    color: #c94f69;
+  }
+  #phrase {
+    font-size: 1.8rem;
+    margin-bottom: 40px;
+    color: #a63d54;
+  }
+  #countdown {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 40px;
+    color: #8b2c3b;
+  }
+  a {
+    display: inline-block;
+    background-color: #c94f69;
+    color: white;
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 30px;
+    transition: background-color 0.3s ease;
+  }
+  a:hover {
+    background-color: #a63d54;
+  }
+</style>
+</head>
+<body>
+
+<h1>Feliz Dia dos Namorados!</h1>
+
+<div id="phrase">Meu amor, eu te amo muuuuuuuuuuuuuuuuuuuuuuuuuito e você é o namorado perfeito!</div>
+
+<div id="countdown">Carregando...</div>
+
+<a href="https://youtu.be/-BjZmE2gtdo?si=yYLtBnQBBbxss2i1" target="_blank" rel="noopener noreferrer">Clique aqui pra ouvir nossa música</a>
+
+<script>
+  // Data de início do relacionamento: 15 de janeiro de 2024 00:00:00
+  const startDate = new Date('2024-01-15T00:00:00');
+
+  function updateCountdown() {
+    const now = new Date();
+    const diff = now - startDate;
+
+    if(diff < 0){
+      document.getElementById('countdown').textContent = "Ainda não começamos nosso conto de amor!";
+      return;
     }
 
-    header {
-      text-align: center;
-      padding: 40px 20px 20px;
-    }
+    const seconds = Math.floor(diff / 1000) % 60;
+    const minutes = Math.floor(diff / (1000 * 60)) % 60;
+    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
 
-    h1 {
-      font-size: 2.8rem;
-      margin-bottom: 10px;
-    }
+    document.getElementById('countdown').textContent = 
+      `${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos juntos.`;
+  }
 
-    #loveText {
-      font-size: 1.6rem;
-      margin-bottom: 15px;
-      min-height: 30px;
-    }
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+</script>
 
-    #countup {
-      font-size:
+</body>
+</html>
