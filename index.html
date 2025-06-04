@@ -4,151 +4,94 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Feliz Dia dos Namorados!</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
   body {
     background-color: #ffe6f0;
-    color: #5a0a45;
-    text-align: center;
-    font-family: 'Great Vibes', cursive;
+    color: #a80050;
+    font-family: 'Quicksand', sans-serif;
     margin: 0;
-    overflow-x: hidden;
+    padding: 0;
+    text-align: center;
   }
+
   h1 {
-    font-size: 3em;
-    margin-top: 30px;
+    font-family: 'Great Vibes', cursive;
+    font-size: 3.5rem;
+    margin-top: 40px;
+    color: #d10063;
   }
+
+  #loveText {
+    font-size: 1.6rem;
+    margin: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
   #countdown {
-    font-size: 1.4em;
-    margin-bottom: 30px;
+    font-size: 1.4rem;
+    margin-top: 30px;
+    background: #d10063;
+    color: white;
+    display: inline-block;
+    padding: 12px 24px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
   }
-  .gallery img {
-    width: 90%;
-    max-width: 400px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(90, 10, 69, 0.3);
-    margin-bottom: 15px;
-  }
-  .thumbnails img {
-    width: 80px;
-    border-radius: 8px;
-    margin: 5px;
-    opacity: 0.6;
-    cursor: pointer;
-    transition: 0.3s;
-    border: 2px solid transparent;
-  }
-  .thumbnails img:hover, .thumbnails img.active {
-    opacity: 1;
-    border-color: #5a0a45;
-  }
-  #hearts {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0;
-  }
-  .heart {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #e91e63;
-    transform: rotate(45deg);
-    animation: fall 6s linear infinite;
-    opacity: 0.85;
-  }
-  .heart::before,
-  .heart::after {
-    content: "";
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    background: #e91e63;
-    border-radius: 50%;
-  }
-  .heart::before {
-    top: -10px;
-    left: 0;
-  }
-  .heart::after {
-    left: 10px;
-    top: 0;
-  }
-  @keyframes fall {
-    0% {
-      transform: translateY(-40px) rotate(45deg);
-    }
-    100% {
-      transform: translateY(110vh) rotate(45deg);
-      opacity: 0;
-    }
+
+  footer {
+    margin-top: 60px;
+    font-size: 0.9rem;
+    color: #555;
   }
 </style>
 </head>
+
 <body>
 
 <h1>Feliz Dia dos Namorados!</h1>
 
-<div id="countdown">Carregando...</div>
-
-<div class="gallery">
-  <img id="mainPhoto" src="https://i.postimg.cc/dZcy3P5g/20240520-165323.jpg" alt="Foto Principal">
-  <div class="thumbnails">
-    <img src="https://i.postimg.cc/dZcy3P5g/20240520-165323.jpg" class="active" onclick="changePhoto(this)">
-    <img src="https://i.postimg.cc/y3hSSQ5x/20240520-173055.jpg" onclick="changePhoto(this)">
-    <img src="https://i.postimg.cc/cvSXjPZ9/20250308232749801.jpg" onclick="changePhoto(this)">
-  </div>
+<div id="loveText">
+  Meu amor, eu te amo muuuuuuuuuuuuuuuuuuuuuuuuuito!<br>
+  Você é o namorado perfeito, a melhor parte da minha vida e meu companheiro para tudo. ❤️
 </div>
 
-<div id="hearts"></div>
+<div id="countdown"></div>
+
+<footer>
+  Feito com amor por Ananda 💖
+</footer>
 
 <script>
-  // Corações caindo
-  const heartsContainer = document.getElementById('hearts');
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-    heartsContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-  }
-  setInterval(createHeart, 300);
+// Define a data especial
+const targetDate = new Date("2025-06-12T00:00:00");
 
-  // Contagem regressiva
-  const countdownEl = document.getElementById('countdown');
-  function updateCountdown() {
-    const now = new Date();
-    const year = now.getMonth() > 5 ? now.getFullYear() + 1 : now.getFullYear();
-    const target = new Date(year, 5, 12); // 12 de junho
-    const diff = target - now;
+// Atualiza a contagem
+function updateCountdown() {
+  const now = new Date();
+  const difference = targetDate - now;
 
-    if (diff <= 0) {
-      countdownEl.innerText = 'Feliz Dia dos Namorados! ❤️';
-      return;
-    }
-
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-    const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-    const minutes = Math.floor((diff / (1000 * 60)) % 60);
-    const seconds = Math.floor((diff / 1000) % 60);
-
-    countdownEl.innerText = `Faltam ${days}d ${hours}h ${minutes}m ${seconds}s para o Dia dos Namorados!`;
+  if (difference <= 0) {
+    document.getElementById("countdown").innerHTML = "Feliz Dia dos Namorados! 💖";
+    clearInterval(interval);
+    return;
   }
 
-  setInterval(updateCountdown, 1000);
-  updateCountdown();
+  const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((difference / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((difference / (1000 * 60)) % 60);
+  const seconds = Math.floor((difference / 1000) % 60);
 
-  // Galeria de fotos
-  function changePhoto(element) {
-    const main = document.getElementById('mainPhoto');
-    main.src = element.src;
-    document.querySelectorAll('.thumbnails img').forEach(img => img.classList.remove('active'));
-    element.classList.add('active');
-  }
+  document.getElementById("countdown").innerHTML =
+    `Faltam ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos 💖`;
+}
+
+const interval = setInterval(updateCountdown, 1000);
+updateCountdown();
 </script>
 
 </body>
