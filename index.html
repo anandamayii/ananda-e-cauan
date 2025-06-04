@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ananda & Cauan 💖</title>
+    <style>
+        body {
+            background-color: #d4f1f4;
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            text-align: center;
+            padding: 30px;
+            color: #333;
+        }
+        h1 {
+            color: #008080;
+            font-size: 3em;
+        }
+        .counter {
+            font-size: 1.5em;
+            margin: 20px 0;
+        }
+        .message {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            max-width: 600px;
+            margin: 20px auto;
+            box-shadow: 0 0 10px #ccc;
+        }
+        .gallery img {
+            width: 150px;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        audio {
+            margin: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Ananda & Cauan 💖</h1>
+
+    <div class="counter">
+        Estamos juntos há <span id="daysTogether"></span> dias! 🥰
+    </div>
+
+    <div class="message">
+        <p>Meu amor, eu te amo muuuuuuuuuuuuuuuuuuuuuuuuuito e você é o namorado perfeito!</p>
+    </div>
+
+    <audio controls autoplay loop>
+        <source src="URL_DA_MUSICA" type="audio/mp3">
+        Seu navegador não suporta áudio.
+    </audio>
+
+    <div class="gallery">
+        <h2>✨ Nossas fotos ✨</h2>
+        <img src="URL_DA_FOTO_1" alt="Foto 1">
+        <img src="URL_DA_FOTO_2" alt="Foto 2">
+        <img src="URL_DA_FOTO_3" alt="Foto 3">
+    </div>
+
+    <script>
+        const startDate = new Date("2025-01-15");
+        const today = new Date();
+        const diffTime = Math.abs(today - startDate);
+        const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+        document.getElementById("daysTogether").innerText = diffDays;
+    </script>
+
+</body>
+</html>
