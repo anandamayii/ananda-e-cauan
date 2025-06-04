@@ -1,36 +1,167 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Feliz Dia dos Namorados!</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Feliz Dia dos Namorados!</title>
+  <style>
+    body {
+      font-family: 'Cursive', 'Segoe UI', sans-serif;
+      background: #ffe6f0;
+      color: #5a0a45;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
 
-<!-- Fontes românticas -->
-<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+    header {
+      text-align: center;
+      padding: 30px 20px 10px;
+    }
 
-<style>
-  body {
-    background-color: #ffe6f0;
-    color: #a80050;
-    font-family: 'Quicksand', sans-serif;
-    margin: 0;
-    padding: 0;
-    text-align: center;
+    h1 {
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+    }
+
+    #loveText {
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+      min-height: 30px;
+    }
+
+    #countup {
+      font-size: 1.3rem;
+      font-weight: bold;
+      margin-bottom: 25px;
+    }
+
+    .link-musica {
+      display: inline-block;
+      background-color: #e91e63;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 20px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .link-musica:hover {
+      background-color: #c2185b;
+    }
+
+    #hearts {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      pointer-events: none;
+      overflow: visible;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #e91e63;
+      transform: rotate(45deg);
+      animation: fall linear infinite;
+      opacity: 0.8;
+    }
+
+    .heart::before,
+    .heart::after {
+      content: "";
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      background: #e91e63;
+      border-radius: 50%;
+    }
+
+    .heart::before {
+      top: -10px;
+      left: 0;
+    }
+
+    .heart::after {
+      left: 10px;
+      top: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10%) rotate(45deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(110vh) rotate(45deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Feliz Dia dos Namorados!</h1>
+  <div id="loveText">Você é o amor da minha vida!</div>
+  <div id="countup"></div>
+  <a class="link-musica" href="https://youtu.be/-BjZmE2gtdo?si=yYLtBnQBBbxss2i1" target="_blank">
+    🎶 Clique aqui para ouvir nossa música
+  </a>
+</header>
+
+<div id="hearts"></div>
+
+<script>
+  // Frases românticas alternando
+  const frases = [
+    "Você é o amor da minha vida!",
+    "Te amo mais do que tudo! 💖",
+    "A vida é mais bonita com você!",
+    "Meu amor, meu porto seguro!",
+    "Te amo infinitamente! ♾️",
+    "Meu coração é todo seu! 💘"
+  ];
+
+  const loveText = document.getElementById('loveText');
+  let fraseIndex = 0;
+  setInterval(() => {
+    loveText.textContent = frases[fraseIndex];
+    fraseIndex = (fraseIndex + 1) % frases.length;
+  }, 3000);
+
+  // Contagem de dias juntos
+  function atualizarDiasJuntos() {
+    const dataInicio = new Date(2025, 0, 15); // 15 de janeiro de 2025 (mês começa em 0)
+    const hoje = new Date();
+    const diffTime = hoje - dataInicio;
+    const diffDays = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+    document.getElementById('countup').textContent = `Estamos juntos há ${diffDays} dias! 💕`;
+  }
+  atualizarDiasJuntos();
+
+  // Corações caindo
+  const heartsContainer = document.getElementById('hearts');
+
+  function criarCoracao() {
+    const heart = document.createElement('div');
+    heart.className = 'heart';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
   }
 
-  h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3.5rem;
-    margin-top: 40px;
-    color: #d10063;
-  }
+  setInterval(criarCoracao, 300);
+</script>
 
-  #loveText {
-    font-size: 1.6rem;
-    margin: 20px;
-    max-width: 600px;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  #countup {
+</body>
+</html>
