@@ -20,6 +20,11 @@
     font-size: 3rem;
     margin-top: 30px;
   }
+  #countdown {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 20px 0 40px;
+  }
   #hearts {
     position: fixed;
     top: 0; left: 0;
@@ -37,7 +42,6 @@
     transform: rotate(45deg);
     animation: fall 6s linear infinite;
     opacity: 0.85;
-    border-radius: 0;
   }
   .heart::before,
   .heart::after {
@@ -68,111 +72,5 @@
   }
   #gallery {
     max-width: 500px;
-    margin: 40px auto;
+    margin: 0 auto 50px;
     position: relative;
-  }
-  #gallery img.main-photo {
-    width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(90, 10, 69, 0.3);
-    display: block;
-    opacity: 1;
-    transition: opacity 0.5s ease-in-out;
-  }
-  #gallery .thumbnails {
-    margin-top: 10px;
-    display: flex;
-    justify-content: center;
-    gap: 10px;
-  }
-  #gallery .thumbnails img {
-    width: 80px;
-    height: 50px;
-    object-fit: cover;
-    border-radius: 8px;
-    cursor: pointer;
-    opacity: 0.6;
-    transition: opacity 0.3s ease;
-    border: 2px solid transparent;
-  }
-  #gallery .thumbnails img.active,
-  #gallery .thumbnails img:hover {
-    opacity: 1;
-    border-color: #5a0a45;
-  }
-  #musicLink {
-    font-family: 'Great Vibes', cursive;
-    font-size: 1.8rem;
-    margin: 30px 0 10px;
-    color: #e91e63;
-    text-decoration: none;
-    display: inline-block;
-    border: 2px solid #e91e63;
-    padding: 8px 20px;
-    border-radius: 25px;
-    transition: background-color 0.3s, color 0.3s;
-  }
-  #musicLink:hover {
-    background-color: #e91e63;
-    color: white;
-  }
-</style>
-</head>
-<body>
-
-<h1>Feliz Dia Dos Namorados!</h1>
-
-<div id="gallery">
-  <img src="https://i.postimg.cc/dZcy3P5g/20240520-165323.jpg" alt="Foto principal" class="main-photo" id="mainPhoto" />
-  <div class="thumbnails">
-    <img src="https://i.postimg.cc/dZcy3P5g/20240520-165323.jpg" alt="Foto 1" class="active" />
-    <img src="https://i.postimg.cc/y3hSSQ5x/20240520-173055.jpg" alt="Foto 2" />
-    <img src="https://i.postimg.cc/cvSXjPZ9/20250308232749801.jpg" alt="Foto 3" />
-  </div>
-</div>
-
-<a id="musicLink" href="https://youtu.be/-BjZmE2gtdo?si=yYLtBnQBBbxss2i1" target="_blank" rel="noopener noreferrer">Clique aqui para ouvir nossa música</a>
-
-<div id="hearts"></div>
-
-<script>
-  const heartsContainer = document.getElementById('hearts');
-  function createHeart() {
-    const heart = document.createElement('div');
-    heart.classList.add('heart');
-    heart.style.left = Math.random() * window.innerWidth + 'px';
-    heart.style.animationDuration = (4 + Math.random() * 3) + 's';
-    heartsContainer.appendChild(heart);
-    setTimeout(() => heart.remove(), 7000);
-  }
-  setInterval(createHeart, 300);
-
-  const mainPhoto = document.getElementById('mainPhoto');
-  const thumbnails = document.querySelectorAll('#gallery .thumbnails img');
-  let currentIndex = 0;
-  let isTransitioning = false;
-
-  function updateGallery(index) {
-    if (index < 0) index = thumbnails.length - 1;
-    if (index >= thumbnails.length) index = 0;
-    if (index === currentIndex || isTransitioning) return;
-    isTransitioning = true;
-    mainPhoto.style.opacity = 0;
-    setTimeout(() => {
-      mainPhoto.src = thumbnails[index].src;
-      thumbnails.forEach((thumb, i) => {
-        thumb.classList.toggle('active', i === index);
-      });
-      mainPhoto.style.opacity = 1;
-      currentIndex = index;
-      setTimeout(() => { isTransitioning = false; }, 500);
-    }, 500);
-  }
-
-  thumbnails.forEach((thumb, i) => {
-    thumb.addEventListener('click', () => updateGallery(i));
-  });
-</script>
-
-</body>
-</html>
