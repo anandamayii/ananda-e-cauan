@@ -2,85 +2,158 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Feliz Dia dos Namorados!</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap');
   body {
-    background: #ffe6f0;
-    color: #b33951;
-    font-family: 'Dancing Script', cursive;
+    background-color: #ffe6f0;
+    color: #5a0a45;
+    font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
     text-align: center;
-    padding: 40px 20px;
+    overflow-x: hidden;
+    margin: 0;
+    padding: 0;
   }
+
   h1 {
-    font-family: 'Great Vibes', cursive;
-    font-size: 3.5rem;
-    margin-bottom: 15px;
-    color: #c94f69;
+    font-size: 3rem;
+    margin-top: 40px;
+    color: #d1006f;
   }
-  #phrase {
-    font-size: 1.8rem;
-    margin-bottom: 40px;
-    color: #a63d54;
-  }
-  #countdown {
-    font-family: 'Dancing Script', cursive;
-    font-size: 2.2rem;
-    font-weight: 600;
-    margin-bottom: 40px;
-    color: #8b2c3b;
-  }
-  a {
-    display: inline-block;
-    background-color: #c94f69;
-    color: white;
-    font-family: 'Dancing Script', cursive;
+
+  .frase {
     font-size: 1.5rem;
-    text-decoration: none;
-    padding: 15px 30px;
-    border-radius: 30px;
-    transition: background-color 0.3s ease;
+    margin: 20px auto;
+    max-width: 600px;
+    color: #a00055;
   }
-  a:hover {
-    background-color: #a63d54;
+
+  .contador {
+    font-size: 1.8rem;
+    margin: 30px auto;
+    color: #70003f;
+  }
+
+  .musica {
+    margin-top: 20px;
+    font-size: 1.2rem;
+  }
+
+  .musica a {
+    color: #d1006f;
+    text-decoration: none;
+    font-weight: bold;
+  }
+
+  /* Corações */
+  #hearts {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
+  }
+
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4da6;
+    transform: rotate(45deg);
+    animation: fall linear infinite;
+    opacity: 0.8;
+  }
+
+  .heart::before,
+  .heart::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background-color: #ff4da6;
+    border-radius: 50%;
+  }
+
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+
+  .heart::after {
+    left: 10px;
+    top: 0;
+  }
+
+  @keyframes fall {
+    0% {
+      transform: translateY(-10%) rotate(45deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(45deg);
+      opacity: 0;
+    }
   }
 </style>
 </head>
+
 <body>
+  <h1>Feliz Dia dos Namorados!</h1>
+  <div class="frase">
+    Meu amor, eu te amo muuuuuuuuuuuuuuuuuuuuuuuuuito e você é o namorado perfeito!
+  </div>
+  
+  <div class="contador" id="contador"></div>
+  
+  <div class="musica">
+    <a href="https://youtu.be/-BjZmE2gtdo?si=yYLtBnQBBbxss2i1" target="_blank">
+      💖 Clique aqui para ouvir nossa música 💖
+    </a>
+  </div>
 
-<h1>Feliz Dia dos Namorados!</h1>
-
-<div id="phrase">Meu amor, eu te amo muuuuuuuuuuuuuuuuuuuuuuuuuito e você é o namorado perfeito!</div>
-
-<div id="countdown">Carregando...</div>
-
-<a href="https://youtu.be/-BjZmE2gtdo?si=yYLtBnQBBbxss2i1" target="_blank" rel="noopener noreferrer">Clique aqui pra ouvir nossa música</a>
+  <div id="hearts"></div>
 
 <script>
-  // Data de início do relacionamento: 15 de janeiro de 2024 00:00:00
-  const startDate = new Date('2024-01-15T00:00:00');
+  // Contador desde 15/01/2024
+  const contador = document.getElementById('contador');
+  const dataInicio = new Date('2024-01-15T00:00:00').getTime();
 
-  function updateCountdown() {
-    const now = new Date();
-    const diff = now - startDate;
+  function atualizarContagem() {
+    const agora = new Date().getTime();
+    const diferenca = agora - dataInicio;
 
-    if(diff < 0){
-      document.getElementById('countdown').textContent = "Ainda não começamos nosso conto de amor!";
-      return;
-    }
+    const dias = Math.floor(diferenca / (1000 * 60 * 60 * 24));
+    const horas = Math.floor((diferenca % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutos = Math.floor((diferenca % (1000 * 60 * 60)) / (1000 * 60));
+    const segundos = Math.floor((diferenca % (1000 * 60)) / 1000);
 
-    const seconds = Math.floor(diff / 1000) % 60;
-    const minutes = Math.floor(diff / (1000 * 60)) % 60;
-    const hours = Math.floor(diff / (1000 * 60 * 60)) % 24;
-    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-
-    document.getElementById('countdown').textContent = 
-      `${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos juntos.`;
+    contador.innerHTML = `Estamos juntos há ${dias} dias, ${horas} horas, ${minutos} minutos e ${segundos} segundos!`;
   }
 
-  updateCountdown();
-  setInterval(updateCountdown, 1000);
+  setInterval(atualizarContagem, 1000);
+  atualizarContagem();
+
+  // Corações caindo
+  const heartsContainer = document.getElementById('hearts');
+
+  function criarCoracao() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+    heart.style.opacity = Math.random();
+
+    heartsContainer.appendChild(heart);
+
+    setTimeout(() => {
+      heart.remove();
+    }, 6000);
+  }
+
+  setInterval(criarCoracao, 300);
 </script>
 
 </body>
