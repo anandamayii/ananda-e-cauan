@@ -8,22 +8,127 @@
   @import url('https://fonts.googleapis.com/css2?family=Dancing+Script&family=Great+Vibes&display=swap');
 
   body {
-    font-family: 'Dancing Script', cursive, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Dancing Script', cursive, 'Segoe UI', sans-serif;
     background: #ffe6f0;
     color: #5a0a45;
     margin: 0; padding: 0;
-    overflow-x: hidden;
     text-align: center;
-  }
-  header {
-    padding: 30px 10px 10px;
-    position: relative;
+    overflow-x: hidden;
   }
   h1 {
     font-family: 'Great Vibes', cursive;
     font-size: 3rem;
-    margin-bottom: 10px;
+    margin-top: 30px;
   }
-  #loveText {
-    font-size: 1.6rem;
-    margin-bottom
+  #hearts {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    overflow: visible;
+    z-index: 5;
+  }
+  .heart {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #e91e63;
+    transform: rotate(45deg);
+    animation: fall 6s linear infinite;
+    opacity: 0.85;
+    border-radius: 0;
+  }
+  .heart::before,
+  .heart::after {
+    content: "";
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #e91e63;
+    border-radius: 50%;
+  }
+  .heart::before {
+    top: -10px;
+    left: 0;
+  }
+  .heart::after {
+    left: 10px;
+    top: 0;
+  }
+  @keyframes fall {
+    0% {
+      transform: translateY(-40px) rotate(45deg);
+      opacity: 0.85;
+    }
+    100% {
+      transform: translateY(110vh) rotate(45deg);
+      opacity: 0;
+    }
+  }
+  #gallery {
+    max-width: 500px;
+    margin: 40px auto;
+    position: relative;
+  }
+  #gallery img.main-photo {
+    width: 100%;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(90, 10, 69, 0.3);
+    display: block;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+  }
+  #gallery .thumbnails {
+    margin-top: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  #gallery .thumbnails img {
+    width: 80px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 8px;
+    cursor: pointer;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+    border: 2px solid transparent;
+  }
+  #gallery .thumbnails img.active,
+  #gallery .thumbnails img:hover {
+    opacity: 1;
+    border-color: #5a0a45;
+  }
+  #musicLink {
+    font-family: 'Great Vibes', cursive;
+    font-size: 1.8rem;
+    margin: 30px 0 10px;
+    color: #e91e63;
+    text-decoration: none;
+    display: inline-block;
+    border: 2px solid #e91e63;
+    padding: 8px 20px;
+    border-radius: 25px;
+    transition: background-color 0.3s, color 0.3s;
+  }
+  #musicLink:hover {
+    background-color: #e91e63;
+    color: white;
+  }
+</style>
+</head>
+<body>
+
+<h1>Feliz Dia Dos Namorados!</h1>
+
+<div id="gallery">
+  <img src="https://i.postimg.cc/dZcy3P5g/20240520-165323.jpg" alt="Foto principal" class="main-photo" id="mainPhoto" />
+  <div class="thumbnails">
+    <img src="https://i.postimg.cc/dZcy3P5g/20240520-165323.jpg" alt="Foto 1" class="active" />
+    <img src="https://i.postimg.cc/y3hSSQ5x/20240520-173055.jpg" alt="Foto 2" />
+    <img src="https://i.postimg.cc/cvSXjPZ9/20250308232749801.jpg" alt="Foto 3" />
+  </div>
+</div>
+
+<a id="musicLink" href="https://youtu.be/-BjZmE2gtdo?si=yYLtBnQBBbxss2i1" target="_blank" rel="noopener noreferrer">Clique aqui_
